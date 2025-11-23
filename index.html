@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوست انستغرام - مجمع طبي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .post-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 1080px;
+            height: 1080px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .post-background {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px;
+        }
+
+        .decorative-circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 10%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-section {
+            background: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-section svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .main-title {
+            color: white;
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .services-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-title {
+            color: #0083b0;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            text-align: right;
+        }
+
+        .service-item {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item::before {
+            content: "✓";
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: white;
+            color: #0083b0;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-text {
+            color: white;
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: white;
+            color: #0083b0;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: none;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+            }
+
+            .post-background {
+                padding: 30px;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 24px;
+            }
+
+            .service-title {
+                font-size: 32px;
+            }
+
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                font-size: 20px;
+            }
+
+            .cta-text {
+                font-size: 24px;
+            }
+
+            .contact-item {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="post-container" id="post">
+            <div class="post-background">
+                <div class="decorative-circles">
+                    <div class="circle circle-1"></div>
+                    <div class="circle circle-2"></div>
+                    <div class="circle circle-3"></div>
+                </div>
+
+                <div class="content">
+                    <div class="header">
+                        <div class="logo-section">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#0083b0"/>
+                                <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="#00b4db"/>
+                                <circle cx="12" cy="12" r="2" fill="#0083b0"/>
+                            </svg>
+                        </div>
+                        <h1 class="main-title">مجمعنا الطبي</h1>
+                        <p class="subtitle">صحتك تهمنا</p>
+                    </div>
+
+                    <div class="main-content">
+                        <div class="services-box">
+                            <h2 class="service-title">خدمات طب الأسنان</h2>
+                            <div class="service-list">
+                                <div class="service-item">تنظيف الأسنان</div>
+                                <div class="service-item">تبييض الأسنان</div>
+                                <div class="service-item">حشوات تجميلية</div>
+                                <div class="service-item">تقويم الأسنان</div>
+                                <div class="service-item">زراعة الأسنان</div>
+                                <div class="service-item">علاج الجذور</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta">
+                        <p class="cta-text">احجز موعدك الآن!</p>
+                        <div class="contact-info">
+                            <div class="contact-item">📞 0500000000</div>
+                            <div class="contact-item">📍 الرياض</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="download-btn" onclick="downloadImage()">تحميل الصورة</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadImage() {
+            const button = document.querySelector('.download-btn');
+            button.textContent = 'جاري التحميل...';
+            button.disabled = true;
+
+            try {
+                const post = document.getElementById('post');
+                const canvas = await html2canvas(post, {
+                    scale: 2,
+                    backgroundColor: null,
+                    logging: false,
+                    useCORS: true,
+                    width: 1080,
+                    height: 1080
+                });
+
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.download = 'instagram-post-dental.png';
+                    link.href = url;
+                    link.click();
+                    URL.revokeObjectURL(url);
+
+                    button.textContent = 'تحميل الصورة';
+                    button.disabled = false;
+                });
+            } catch (error) {
+                console.error('Error generating image:', error);
+                button.textContent = 'حدث خطأ - حاول مرة أخرى';
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
